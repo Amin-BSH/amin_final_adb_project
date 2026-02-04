@@ -10,11 +10,6 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 Base = declarative_base()
 
-# Import models after Base is defined to register them
-from app.models.city import City  # noqa: E402, F401
-from app.models.province import Province  # noqa: E402, F401
-from app.models.village import Village  # noqa: E402, F401
-
 engine = create_async_engine(
     DATABASE_URL,
     echo=True,

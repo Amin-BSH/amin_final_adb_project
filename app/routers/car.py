@@ -80,16 +80,16 @@ async def update_car(
 
 @router.delete("/{id}")
 async def delete_car(
-        id: int,
+    id: int,
     session: Session = Depends(get_session),
     user: User = Depends(get_current_user),
-    ):
-       car = await session.get(Car, id)
-   if not car:
+):
+    car = await session.get(Car, id)
+    if not car:
         raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, detail="Car not found"
-                               )
+            status_code=status.HTTP_404_NOT_FOUND, detail="Car not found"
+        )
 
-   await session.delete(car)
-   await session.commit()
-   return {"detail": "Car deleted successfully"}
+    await session.delete(car)
+    await session.commit()
+    return {"detail": "Car deleted successfully"}
